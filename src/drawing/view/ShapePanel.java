@@ -1,6 +1,13 @@
 package drawing.view;
 
-public class ShapePanel
-{
+import javax.swing.JPanel;
 
+import drawing.controller.DrawingController;
+
+public class ShapePanel extends JPanel
+{
+	public ShapePanel(DrawingController baseController)
+	{
+		
+	}
 }
