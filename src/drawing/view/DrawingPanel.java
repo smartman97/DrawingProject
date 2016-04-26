@@ -19,7 +19,13 @@ import drawing.controller.DrawingController;
 public class DrawingPanel extends JPanel
 {
 	private DrawingController baseController;
-	private JButton firstButton;
+	private ShapePanel shapePanel;
+	private JButton rectangleButton;
+	private JButton squareButton;
+	private JButton ellipseButton;
+	private JButton circleButton;
+	private JButton triangleButton;
+	private JButton polygonButton;
 	private JTextField firstTextField;
 	private SpringLayout baseLayout;
 	private ArrayList<Rectangle> rectangleList;
@@ -30,7 +36,7 @@ public class DrawingPanel extends JPanel
 		this.baseController = baseController;
 
 		baseLayout = new SpringLayout();
-		firstButton = new JButton("Draw Rectangle");
+		rectangleButton = new JButton("Draw Rectangle");
 		rectangleList = new ArrayList<>();
 		
 
@@ -44,9 +50,6 @@ public class DrawingPanel extends JPanel
 	{
 		super.paintComponent(currentGraphics);
 		Graphics2D mainGraphics = (Graphics2D)currentGraphics;
-		mainGraphics.setColor(Color.GREEN);
-		mainGraphics.setStroke(new BasicStroke(15));
-		mainGraphics.draw(new Rectangle(10,10,50,70));
 		
 		for(Rectangle current : rectangleList)
 		{
@@ -62,16 +65,11 @@ public class DrawingPanel extends JPanel
 	
 	private void setupListeners()
 	{
-		firstButton.addActionListener(new ActionListener()
+		rectangleButton.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent click)
 			{
-				int xPosition = (int)(Math.random() * 600);
-				int yPosition = (int)(Math.random() * 600);
-				int width = (int)(Math.random() * 100);
-				int height = (int)(Math.random() * 100);
-				
-				rectangleList.add(new Rectangle(xPosition, yPosition, width, height));
+				shapePanel.addRectangle();
 				repaint();
 			}
 		});
@@ -79,13 +77,13 @@ public class DrawingPanel extends JPanel
 	
 	private void setupLayout()
 	{
-		baseLayout.putConstraint(SpringLayout.WEST, firstButton, 158, SpringLayout.WEST, this);
-		baseLayout.putConstraint(SpringLayout.SOUTH, firstButton, -10, SpringLayout.SOUTH, this);
+		baseLayout.putConstraint(SpringLayout.WEST, rectangleButton, 158, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.SOUTH, rectangleButton, -10, SpringLayout.SOUTH, this);
 	}
 	
 	private void setupPanel()
 	{
 		this.setLayout(baseLayout);
-		this.add(firstButton);
+		this.add(rectangleButton);
 	}
 }
