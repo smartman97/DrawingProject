@@ -59,7 +59,7 @@ public class ShapePanel extends JPanel
 		
 	}
 	
-	public void addTrianlge()
+	public void addTriangle()
 	{
 		int[] xPoints = new int[3];
 		int[] yPoints = new int[3];
