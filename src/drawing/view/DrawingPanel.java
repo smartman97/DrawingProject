@@ -42,8 +42,13 @@ public class DrawingPanel extends JPanel
 	public DrawingPanel(DrawingController baseController)
 	{
 		this.baseController = baseController;
+		shapePanel = new ShapePanel();
 
 		baseLayout = new SpringLayout();
+		baseLayout.putConstraint(SpringLayout.NORTH, shapePanel, 10, SpringLayout.NORTH, this);
+		baseLayout.putConstraint(SpringLayout.WEST, shapePanel, 50, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.SOUTH, shapePanel, 200, SpringLayout.NORTH, this);
+		baseLayout.putConstraint(SpringLayout.EAST, shapePanel, -50, SpringLayout.EAST, this);
 		rectangleButton = new JButton("Draw a  rectangle");
 		squareButton = new JButton("Draw a square");
 		ellipseButton = new JButton("Draw an ellipse");
@@ -166,5 +171,6 @@ public class DrawingPanel extends JPanel
 		this.add(circleButton);
 		this.add(triangleButton);
 		this.add(polygonButton);
+		this.add(shapePanel);
 	}
 }
