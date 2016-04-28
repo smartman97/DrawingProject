@@ -67,11 +67,13 @@ public class DrawingPanel extends JPanel
 		baseLayout.putConstraint(SpringLayout.SOUTH, circleButton, -30, SpringLayout.SOUTH, rectangleButton);
 		
 		triangleButton = new JButton("Draw a triangle");
-		baseLayout.putConstraint(SpringLayout.WEST, triangleButton, 200, SpringLayout.WEST, rectangleButton);
+		baseLayout.putConstraint(SpringLayout.WEST, triangleButton, 220, SpringLayout.WEST, rectangleButton);
+		
 		baseLayout.putConstraint(SpringLayout.SOUTH, triangleButton, -30, SpringLayout.SOUTH, rectangleButton);
 		
 		polygonButton = new JButton("Draw a polygon");
-		baseLayout.putConstraint(SpringLayout.WEST, polygonButton, 400, SpringLayout.WEST, rectangleButton);
+		baseLayout.putConstraint(SpringLayout.WEST, polygonButton, 412, SpringLayout.WEST, rectangleButton);
+		
 		baseLayout.putConstraint(SpringLayout.SOUTH, polygonButton, -30, SpringLayout.SOUTH, rectangleButton);
 		
 		

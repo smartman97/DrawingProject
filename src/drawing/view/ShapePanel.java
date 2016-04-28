@@ -86,7 +86,7 @@ public class ShapePanel extends JPanel
 	
 	public void addPolygon()
 	{
-		int numberOfSides = (int)(Math.random() * 10) + 3;
+		int numberOfSides = (int)(Math.random() * 5) + 3;
 		int[] xPoints = new int[numberOfSides];
 		int[] yPoints = new int[numberOfSides];
 		
