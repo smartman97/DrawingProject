@@ -19,7 +19,7 @@ public class DrawingFrame extends JFrame
 	private void setupFrame()
 	{
 		this.setContentPane(basePanel); 
-		this.setSize(600, 600);			
+		this.setSize(700, 700);			
 		this.setTitle("Drawing GUI");
 		this.setResizable(false);		
 		this.setVisible(true);	

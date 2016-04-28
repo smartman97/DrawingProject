@@ -46,17 +46,29 @@ public class ShapePanel extends JPanel
 		int yPosition = (int)(Math.random() * 600);
 		int size = (int)(Math.random() * 100);
 		
-		rectangleList.add(new Rectangle(xPosition, yPosition, size, size));
+		squareList.add(new Rectangle(xPosition, yPosition, size, size));
 	}
 	
 	public void addEllipse()
 	{
+		int xPosition = (int)(Math.random() * 600);
+		int yPosition = (int)(Math.random() * 600);
+		int width = (int)(Math.random() * 100);
+		int height = (int)(Math.random() * 100);
+		
+		Ellipse2D current = new Ellipse2D.Double(xPosition, yPosition, width, height);
+		ellipseList.add(current);
 		
 	}
 	
 	public void addCircle()
 	{
+		int xPosition = (int)(Math.random() * 600);
+		int yPosition = (int)(Math.random() * 600);
+		int size = (int)(Math.random() * 100);
 		
+		Ellipse2D current = new Ellipse2D.Double(xPosition, yPosition, size, size);
+		ellipseList.add(current);
 	}
 	
 	public void addTriangle()
