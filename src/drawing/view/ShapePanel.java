@@ -100,6 +100,16 @@ public class ShapePanel extends JPanel
 		polygonList.add(myPolygon);
 	}
 	
+	public void clearLists()
+	{
+		rectangleList.clear();
+		squareList.clear();
+		ellipseList.clear();
+		circleList.clear();
+		triangleList.clear();
+		polygonList.clear();
+	}
+	
 	@Override
 	protected void paintComponent(Graphics currentGraphics)
 	{

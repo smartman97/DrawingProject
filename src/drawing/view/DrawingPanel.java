@@ -22,6 +22,7 @@ public class DrawingPanel extends JPanel
 {
 	private DrawingController baseController;
 	private ShapePanel shapePanel;
+	private JButton clearButton;
 	private JButton rectangleButton;
 	private JButton squareButton;
 	private JButton ellipseButton;
@@ -50,6 +51,10 @@ public class DrawingPanel extends JPanel
 		baseLayout.putConstraint(SpringLayout.SOUTH, shapePanel, -10, SpringLayout.SOUTH, this);
 		baseLayout.putConstraint(SpringLayout.EAST, shapePanel, -10, SpringLayout.EAST, this);
 		
+		clearButton = new JButton("Clear");
+		baseLayout.putConstraint(SpringLayout.WEST, clearButton, 10, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.NORTH, clearButton, 10, SpringLayout.NORTH, this);
+		
 		rectangleButton = new JButton("Draw a  rectangle");
 		baseLayout.putConstraint(SpringLayout.WEST, rectangleButton, 10, SpringLayout.WEST, this);
 		baseLayout.putConstraint(SpringLayout.SOUTH, rectangleButton, -10, SpringLayout.SOUTH, this);
@@ -68,12 +73,10 @@ public class DrawingPanel extends JPanel
 		
 		triangleButton = new JButton("Draw a triangle");
 		baseLayout.putConstraint(SpringLayout.WEST, triangleButton, 220, SpringLayout.WEST, rectangleButton);
-		
 		baseLayout.putConstraint(SpringLayout.SOUTH, triangleButton, -30, SpringLayout.SOUTH, rectangleButton);
 		
 		polygonButton = new JButton("Draw a polygon");
 		baseLayout.putConstraint(SpringLayout.WEST, polygonButton, 412, SpringLayout.WEST, rectangleButton);
-		
 		baseLayout.putConstraint(SpringLayout.SOUTH, polygonButton, -30, SpringLayout.SOUTH, rectangleButton);
 		
 		
@@ -111,6 +114,16 @@ public class DrawingPanel extends JPanel
 	
 	private void setupListeners()
 	{
+		clearButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent click)
+			{
+				shapePanel.clearLists();
+				
+				repaint();
+			}
+		});
+		
 		rectangleButton.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent click)
@@ -174,6 +187,7 @@ public class DrawingPanel extends JPanel
 	private void setupPanel()
 	{
 		this.setLayout(baseLayout);
+		this.add(clearButton);
 		this.add(rectangleButton);
 		this.add(squareButton);
 		this.add(ellipseButton);
