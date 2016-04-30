@@ -1,15 +1,7 @@
 package drawing.view;
 
-import java.awt.BasicStroke;
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Polygon;
-import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.geom.Ellipse2D;
-import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -22,6 +14,7 @@ public class DrawingPanel extends JPanel
 {
 	private DrawingController baseController;
 	private ShapePanel shapePanel;
+	private GraphPanel graphPanel;
 	private JButton clearButton;
 	private JButton rectangleButton;
 	private JButton squareButton;
@@ -29,23 +22,21 @@ public class DrawingPanel extends JPanel
 	private JButton circleButton;
 	private JButton triangleButton;
 	private JButton polygonButton;
+	private JButton graphButton;
 	private JTextField firstTextField;
 	private SpringLayout baseLayout;
-	
-	private ArrayList<Rectangle> rectangleList;
-	private ArrayList<Rectangle> squareList;
-	private ArrayList<Ellipse2D> ellipseList;
-	private ArrayList<Ellipse2D> circleList;
-	private ArrayList<Polygon> triangleList;
-	private ArrayList<Polygon> polygonList;
-
 	
 	public DrawingPanel(DrawingController baseController)
 	{
 		this.baseController = baseController;
 		shapePanel = new ShapePanel();
+		graphPanel = new GraphPanel();
 
 		baseLayout = new SpringLayout();
+		baseLayout.putConstraint(SpringLayout.NORTH, graphPanel, 10, SpringLayout.NORTH, this);
+		baseLayout.putConstraint(SpringLayout.WEST, graphPanel, 10, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.SOUTH, graphPanel, -10, SpringLayout.SOUTH, this);
+		baseLayout.putConstraint(SpringLayout.EAST, graphPanel, -10, SpringLayout.EAST, this);
 		baseLayout.putConstraint(SpringLayout.NORTH, shapePanel, 10, SpringLayout.NORTH, this);
 		baseLayout.putConstraint(SpringLayout.WEST, shapePanel, 10, SpringLayout.WEST, this);
 		baseLayout.putConstraint(SpringLayout.SOUTH, shapePanel, -10, SpringLayout.SOUTH, this);
@@ -79,41 +70,34 @@ public class DrawingPanel extends JPanel
 		baseLayout.putConstraint(SpringLayout.WEST, polygonButton, 412, SpringLayout.WEST, rectangleButton);
 		baseLayout.putConstraint(SpringLayout.SOUTH, polygonButton, -30, SpringLayout.SOUTH, rectangleButton);
 		
-		
-		
-		rectangleList = new ArrayList<>();
-		squareList = new ArrayList<>();
-		ellipseList = new ArrayList<>();
-		circleList = new ArrayList<>();
-		triangleList = new ArrayList<>();
-		polygonList = new ArrayList<>();
-		
-
+		graphButton = new JButton("New Heights");
+		baseLayout.putConstraint(SpringLayout.NORTH, graphButton, 10, SpringLayout.NORTH, this);
+		baseLayout.putConstraint(SpringLayout.EAST, graphButton, -10, SpringLayout.EAST, this);
+	
 		setupPanel();
 		setupLayout();
 		setupListeners();
 	}
 	
-	@Override
-	protected void paintComponent(Graphics currentGraphics)
+	private void setupLayout()
 	{
-		super.paintComponent(currentGraphics);
-		Graphics2D mainGraphics = (Graphics2D)currentGraphics;
 		
-		for(Rectangle current : rectangleList)
-		{
-			int randomStroke = (int)(Math.random() * 7);
-			int red = (int)(Math.random() * 256);
-			int blue = (int)(Math.random() * 256);
-			int green = (int)(Math.random() * 256);
-			mainGraphics.setColor(new Color(red, green, blue));
-			mainGraphics.setStroke(new BasicStroke(randomStroke));
-			mainGraphics.fill(current);
-		}
 	}
 	
 	private void setupListeners()
 	{
+		graphButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent click)
+			{
+				graphPanel.clearList();
+				graphPanel.fillArray();
+				graphPanel.addBar();
+				
+				repaint();
+			}
+		});
+		
 		clearButton.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent click)
@@ -179,21 +163,18 @@ public class DrawingPanel extends JPanel
 		});
 	}
 	
-	private void setupLayout()
-	{
-		
-	}
-	
 	private void setupPanel()
 	{
 		this.setLayout(baseLayout);
-		this.add(clearButton);
+		/*this.add(clearButton);
 		this.add(rectangleButton);
 		this.add(squareButton);
 		this.add(ellipseButton);
 		this.add(circleButton);
 		this.add(triangleButton);
 		this.add(polygonButton);
-		this.add(shapePanel);
+		this.add(shapePanel);*/
+		this.add(graphPanel);
+		this.add(graphButton);
 	}
 }
